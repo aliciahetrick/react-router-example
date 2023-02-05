@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom'
 
 function Shop() {
   useEffect(() => {
-    fetchItems()
+    fetchPokemon()
   }, [])
 
-  const [pokemon, setItems] = useState([])
+  const [pokemon, setPokemon] = useState([])
 
-  const fetchItems = async () => {
+  const fetchPokemon = async () => {
     const data = await fetch('https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20')
     const pokemonData = await data.json()
     // console.log(pokemon.results)
     console.log(pokemonData)
-    setItems(pokemonData.results)
+    setPokemon(pokemonData.results)
   }
 
   return (
@@ -21,7 +21,7 @@ function Shop() {
       {pokemon.map((monster) => {
         return (
           <h1 key={monster.name}>
-            <Link to={`shop/${monster.name}`}>{monster.name}</Link>
+            <Link to={`/shop/${monster.name}`}>{monster.name}</Link>
           </h1>
         )
       })}
